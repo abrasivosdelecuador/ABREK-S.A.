@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto - ABREK S.A.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#f4f6f9;
+}
+
+/* HEADER */
+header{
+  background:#1E2A78;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 60px;
+}
+
+header img{ height:60px; }
+
+nav { display: flex; gap: 15px; }
+
+nav a{
+  color: #1E2A78; background: white; padding: 10px 20px;   
+  text-decoration: none; font-weight: 600; border-radius: 8px;   
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s;
+}
+
+nav a:hover{ background: #E30613; color: white; transform: translateY(-3px); }
+
+/* CONTENEDOR PRINCIPAL */
+.container{
+    padding:60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align:center;
+}
+
+h1 {
+    font-family: 'Anton', sans-serif;
+    color: #1E2A78;
+    text-transform: uppercase;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+/* TARJETAS DE CONTACTO CORREGIDAS */
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.contact-card {
+    background: white;
+    padding: 35px 20px;
+    border-radius: 15px;
+    /* Forzamos un ancho fijo y usamos flex para alinear contenido */
+    width: 300px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transition: 0.3s ease;
+    border-bottom: 4px solid transparent;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    border-bottom: 4px solid #E30613;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.contact-card h3 {
+    color: #1E2A78;
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.contact-card p {
+    color: #444;
+    word-break: break-all; /* Evita que el email largo se salga del recuadro */
+    margin: 0;
+    font-weight: 500;
+}
+
+/* FORMULARIO */
+.formulario-box {
+    max-width: 700px;
+    margin: 0 auto 70px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.formulario-box h2 {
+    font-family: 'Anton', sans-serif;
+    color: #1E2A78;
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.input-group { margin-bottom: 25px; }
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1E2A78;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-family: 'Poppins';
+    box-sizing: border-box;
+    transition: 0.3s;
+    outline: none;
+}
+
+input:focus, textarea:focus {
+    border-color: #E30613;
+    background: #fffcfc;
+}
+
+.btn-enviar {
+    background: #25D366; /* Verde WhatsApp */
+    color: white;
+    border: none;
+    padding: 18px;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-enviar:hover {
+    background: #128C7E;
+    transform: scale(1.02);
+}
+
+/* MAPA MEJORADO */
+.mapa-section {
+    margin-top: 50px;
+}
+
+.mapa-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 25px;
+    overflow: hidden; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border: 8px solid white;
+}
+
+/* FOOTER */
+footer{
+    background:#1E2A78;
+    color:white;
+    text-align:center;
+    padding:25px;
+    margin-top: 80px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="logo.jpg">
+<nav>
+<a href="index.html">Inicio</a>
+<a href="productos.html">Productos</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+</header>
+
+<section class="container">
+    <h1>Contáctanos</h1>
+    <p class="subtitulo">Estamos listos para brindarte la mejor asesoría industrial.</p>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>📞 Teléfono</h3>
+            <p>099 961 7128</p>
+        </div>
+        <div class="contact-card">
+            <h3>📧 Email</h3>
+            <p>abrasivosdelecuador@gmail.com</p>
+        </div>
+        <div class="contact-card">
+            <h3>📍 Ubicación</h3>
+            <p>Quito - Ecuador</p>
+        </div>
+    </div>
+
+    <div class="formulario-box">
+        <h2>Envíanos un mensaje</h2>
+        <div class="input-group">
+            <label>Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Ej: Juan Pérez">
+        </div>
+        <div class="input-group">
+            <label>Producto de Interés</label>
+            <input type="text" id="interes" placeholder="¿En qué producto estás interesado?">
+        </div>
+        <div class="input-group">
+            <label>Mensaje o Consulta</label>
+            <textarea id="mensaje" rows="4" placeholder="Escribe aquí tus dudas..."></textarea>
+        </div>
+        <button class="btn-enviar" onclick="enviarMensaje()">
+            Enviar a WhatsApp 
+        </button>
+    </div>
+
+    <div class="mapa-section">
+        <h2 style="font-family:'Anton'; color:#1E2A78; margin-bottom: 30px; font-size: 35px;">NUESTRA UBICACIÓN</h2>
+        <div class="mapa-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.272906237833!2d-78.52207535661786!3d-0.012422949799270005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d587d6d0071e8d%3A0xc6ab5930536b624f!2sABREK%20S.A.%20-%20Discos%20Abrasivos!5e0!3m2!1ses!2sec!4v1773964299479!5m2!1ses!2sec" 
+                width="100%" 
+                height="500" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<footer>
+© 2026 ABREK S.A. - La calidad no es una opción, es nuestra marca.
+</footer>
+
+<script>
+function enviarMensaje(){
+    let nombre = document.getElementById("nombre").value;
+    let interes = document.getElementById("interes").value;
+    let mensaje = document.getElementById("mensaje").value;
+
+    if(nombre === "" || mensaje === ""){
+        alert("Por favor, completa al menos tu nombre y el mensaje.");
+        return;
+    }
+
+    let texto = `Hola ABREK S.A., mi nombre es *${nombre}*.%0AEstoy interesado en: *${interes}*.%0A%0A*Consulta:* ${mensaje}`;
+    window.open("https://wa.me/593999617128?text=" + texto);
+}
+</script>
+
+</body>
+</html>
