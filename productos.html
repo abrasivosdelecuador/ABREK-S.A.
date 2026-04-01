@@ -119,6 +119,112 @@ z-index:2000;
 opacity:1;
 bottom:40px;
 }
+/* ================= RESPONSIVE FINAL ================= */
+
+/* Tablets */
+@media (max-width: 1024px){
+    header{
+        padding: 15px 30px;
+    }
+
+    h2{
+        font-size: 35px;
+    }
+}
+
+/* Celulares */
+@media (max-width: 768px){
+
+    header{
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+
+    header img{
+        height: 50px;
+    }
+
+    nav{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav a{
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    h2{
+        font-size: 28px;
+    }
+
+    .container{
+        padding: 30px 15px;
+    }
+
+    .grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .producto{
+        padding: 15px;
+    }
+
+    .producto img{
+        height: 130px;
+    }
+
+    .producto h3{
+        font-size: 14px;
+    }
+
+    .precio{
+        font-size: 16px;
+    }
+
+    .contador input{
+        width: 45px;
+    }
+
+    .carrito-panel{
+        width: 100%;
+    }
+
+    .carrito-btn{
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px){
+
+    .grid{
+        grid-template-columns: 1fr;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+
+    nav a{
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .producto h3{
+        font-size: 13px;
+    }
+
+    .precio{
+        font-size: 15px;
+    }
+}
 </style>
 </head>
 
