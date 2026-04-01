@@ -1,358 +1,233 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos - ABREK S.A.</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        body { margin:0; font-family:'Poppins', sans-serif; background:#f4f6f9; min-height: 100vh; }
-        header { background:#1E2A78; display:flex; justify-content:space-between; align-items:center; padding:15px 60px; }
-        header img { height:60px; }
-        nav { display: flex; gap: 15px; align-items: center; }
-        nav a { color: #1E2A78; background: white; padding: 10px 20px; text-decoration: none; font-weight: 600; border-radius: 8px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
-        nav a:hover { background: #E30613; color: white; transform: translateY(-3px); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos - ABREK S.A.</title>
 
-        .container { padding:50px 20px; max-width: 1200px; margin: 0 auto; }
-        h2 { font-family: 'Anton', sans-serif; color: #1E2A78; text-transform: uppercase; font-size: 45px; text-align: center; margin-bottom: 30px; }
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .search-box { max-width: 500px; margin: 0 auto 30px auto; }
-        input#buscador { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #1E2A78; font-family: 'Poppins'; outline: none; box-sizing: border-box; }
+<style>
+body { margin:0; font-family:'Poppins', sans-serif; background:#f4f6f9; min-height: 100vh; }
 
-        .categorias-container { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 50px; }
-        .btn-categoria { background: white; color: #1E2A78; border: 2px solid #1E2A78; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .btn-categoria.activo { background: #E30613; color: white; border-color: #E30613; }
+header { background:#1E2A78; display:flex; justify-content:space-between; align-items:center; padding:15px 60px; }
+header img { height:60px; }
 
-        .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:30px; min-height: 300px; align-items: stretch; }
-        
-        .producto { 
-            background:white; 
-            padding:30px; 
-            border-radius:15px; 
-            text-align:center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            transition: 0.3s; 
-            border-bottom: 4px solid transparent;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            box-sizing: border-box;
-        }
-        
-        .producto-top {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-        }
+nav { display: flex; gap: 15px; align-items: center; }
+nav a { color: #1E2A78; background: white; padding: 10px 20px; text-decoration: none; font-weight: 600; border-radius: 8px; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+nav a:hover { background: #E30613; color: white; transform: translateY(-3px); }
 
-        .producto:hover { transform: translateY(-10px); border-bottom: 4px solid #E30613; }
-        .producto img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 15px; background: #eee; border-radius: 10px; }
-        .producto h3 { margin-top: 0; margin-bottom: 10px; font-size: 18px; color: #333; }
-        
-        .precio { font-weight: 700; font-size: 22px; color: #E30613; margin: 5px 0 15px 0; }
-        
-        .contador { display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom:15px; }
-        .contador button { width:35px; height:35px; background:#eee; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
-        .contador input { width:60px; height:35px; text-align:center; border:1px solid #ddd; border-radius:5px; font-weight:bold; }
-        
-        .agregar { width:100%; background:#1E2A78; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:bold; transition: 0.3s; text-transform: uppercase; }
+.container { padding:50px 20px; max-width: 1200px; margin: 0 auto; }
 
-        .carrito-btn { position:fixed; bottom:30px; right:30px; background:#E30613; color:white; width: 65px; height: 65px; border-radius:50%; cursor:pointer; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .burbuja { position:absolute; top:0; right:0; background:#1E2A78; color:white; border-radius:50%; width: 22px; height: 22px; display: flex; justify-content: center; align-items: center; font-size: 12px; border: 2px solid white; }
-        .carrito-panel { position:fixed; right: -400px; top:0; width:350px; height:100vh; background:white; box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 1001; transition: 0.4s ease; display: flex; flex-direction: column; }
-        .carrito-panel.activo { right: 0; }
-        #lista { padding: 20px; flex-grow: 1; overflow-y: auto; }
-        .carrito-footer { padding: 25px; border-top: 1px solid #eee; }
-        
-        .enviar-btn { background:#25D366; color:white; padding:15px; border:none; width:100%; border-radius:8px; cursor:pointer; font-weight: bold; transition: 0.3s; }
-        .enviar-btn:disabled { background:#ccc; cursor: not-allowed; }
+h2 { font-family: 'Anton', sans-serif; color: #1E2A78; text-transform: uppercase; font-size: 45px; text-align: center; margin-bottom: 30px; }
 
-        .item-carrito { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px; }
-        .btn-cant-cart { background:#eee; border:none; width:25px; height:25px; border-radius:4px; cursor:pointer; font-weight:bold; }
-        /* ================= RESPONSIVE ================= */
+.search-box { max-width: 500px; margin: 0 auto 30px auto; }
+input#buscador { width: 100%; padding: 15px 25px; border-radius: 30px; border: 2px solid #1E2A78; }
 
-/* Tablets */
-@media (max-width: 1024px){
-    header{
-        padding: 15px 30px;
-    }
+.categorias-container { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 50px; }
+.btn-categoria { background: white; color: #1E2A78; border: 2px solid #1E2A78; padding: 8px 18px; border-radius: 25px; cursor: pointer; font-weight: 600; }
+.btn-categoria.activo { background: #E30613; color: white; }
 
-    h2{
-        font-size: 35px;
-    }
+.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:30px; }
+
+.producto { 
+background:white; padding:30px; border-radius:15px; text-align:center;
+box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+transition: 0.3s;
+display:flex; flex-direction:column; justify-content:space-between;
 }
 
-/* Celulares */
-@media (max-width: 768px){
+.producto:hover { transform: translateY(-10px); border-bottom: 4px solid #E30613; }
 
-    header{
-        flex-direction: column;
-        padding: 15px 20px;
-        gap: 10px;
-    }
+.producto img { width:100%; height:180px; object-fit:contain; margin-bottom:15px; background:#eee; border-radius:10px; }
 
-    header img{
-        height: 50px;
-    }
+.precio { font-weight:700; font-size:22px; color:#E30613; }
 
-    nav{
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+.contador { display:flex; justify-content:center; gap:8px; margin-bottom:15px; }
+.contador button { width:35px; height:35px; }
+.contador input { width:60px; text-align:center; }
 
-    nav a{
-        padding: 8px 12px;
-        font-size: 12px;
-    }
+.agregar { width:100%; background:#1E2A78; color:white; padding:12px; border:none; border-radius:8px; cursor:pointer; }
 
-    h2{
-        font-size: 28px;
-    }
-
-    .container{
-        padding: 30px 15px;
-    }
-
-    .producto{
-        padding: 20px;
-    }
-
-    .producto img{
-        height: 150px;
-    }
-
-    .contador input{
-        width: 50px;
-    }
-
-    .carrito-panel{
-        width: 100%;
-    }
-
-    .carrito-btn{
-        width: 55px;
-        height: 55px;
-        font-size: 24px;
-        bottom: 20px;
-        right: 20px;
-    }
+/* 🛒 BOTÓN CARRITO */
+.carrito-btn {
+position:fixed;
+bottom:30px;
+right:30px;
+background:#E30613;
+color:white;
+width:65px;
+height:65px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+z-index:1000;
+transition:0.3s;
 }
 
-/* Pantallas muy pequeñas */
-@media (max-width: 480px){
-
-    h2{
-        font-size: 24px;
-    }
-
-    nav a{
-        font-size: 11px;
-        padding: 6px 10px;
-    }
-
-    .producto h3{
-        font-size: 16px;
-    }
-
-    .precio{
-        font-size: 18px;
-    }
+/* 🔥 ANIMACIÓN */
+.carrito-btn.animar {
+animation: rebote 0.4s;
 }
-    </style>
+
+@keyframes rebote {
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+.burbuja {
+position:absolute;
+top:0;
+right:0;
+background:#1E2A78;
+color:white;
+border-radius:50%;
+width:22px;
+height:22px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:12px;
+}
+
+.carrito-panel { position:fixed; right:-400px; top:0; width:350px; height:100vh; background:white; transition:0.4s; display:flex; flex-direction:column; }
+.carrito-panel.activo { right:0; }
+
+#lista { padding:20px; flex-grow:1; overflow:auto; }
+
+.enviar-btn { background:#25D366; color:white; padding:15px; border:none; width:100%; border-radius:8px; }
+
+/* 🔔 NOTIFICACIÓN */
+.toast {
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#1E2A78;
+color:white;
+padding:12px 25px;
+border-radius:25px;
+opacity:0;
+transition:0.4s;
+z-index:2000;
+}
+
+.toast.show {
+opacity:1;
+bottom:40px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-    <img src="logo.jpg" alt="Logo ABREK">
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="productos.html">Productos</a>
-        <a href="pdf/catalogoabrek.pdf" target="_blank" style="background: #E30613; color: white;">📄 Catálogo PDF</a>
-        <a href="contacto.html">Contacto</a>
-    </nav>
+<img src="logo.jpg">
+<nav>
+<a href="index.html">Inicio</a>
+<a href="productos.html">Productos</a>
+<a href="contacto.html">Contacto</a>
+</nav>
 </header>
 
 <section class="container">
-    <h2>Catálogo Industrial</h2>
-    <div class="search-box">
-        <input type="text" id="buscador" placeholder="Buscar por nombre..." onkeyup="buscar()">
-    </div>
+<h2>Catálogo Industrial</h2>
 
-    <div class="categorias-container" id="filtros">
-        <button class="btn-categoria activo" data-cat="todos">Todos</button>
-        <button class="btn-categoria" data-cat="corte">Corte</button>
-        <button class="btn-categoria" data-cat="desbaste">Desbaste</button>
-        <button class="btn-categoria" data-cat="gratas">Gratas</button>
-        <button class="btn-categoria" data-cat="perforacion">Perforación</button>
-        <button class="btn-categoria" data-cat="soldadura">Soldadura</button>
-        <button class="btn-categoria" data-cat="epp">Seguridad (EPP)</button>
-        <button class="btn-categoria" data-cat="herramientas">Herramientas</button>
-    </div>
+<div class="search-box">
+<input type="text" id="buscador" placeholder="Buscar..." onkeyup="buscar()">
+</div>
 
-    <div class="grid" id="grid-productos">
-        <p style="text-align:center; grid-column: 1/-1;">Cargando catálogo ABREK...</p>
-    </div>
+<div class="grid" id="grid-productos"></div>
 </section>
 
-<div class="carrito-btn" onclick="toggleCarrito()">
-    🛒 <div class="burbuja" id="contadorCarrito">0</div>
+<div class="carrito-btn" id="btnCarrito" onclick="toggleCarrito()">
+🛒 <div class="burbuja" id="contadorCarrito">0</div>
 </div>
 
 <div class="carrito-panel" id="panel">
-    <div style="padding:25px; border-bottom:1px solid #eee;">
-        <span style="cursor:pointer; float:right; font-size:24px;" onclick="toggleCarrito()">×</span>
-        <h2 style="margin:0; color:#1E2A78; font-size: 24px;">Mi Pedido</h2>
-    </div>
-    <div id="lista"></div>
-    <div class="carrito-footer">
-        <h3 id="total" style="color: #E30613; text-align: right; margin-bottom: 15px;">Total: $0.00</h3>
-        <button class="enviar-btn" id="btn-whatsapp" onclick="enviar()" disabled>Finalizar por WhatsApp</button>
-    </div>
+<div style="padding:20px;">
+<span onclick="toggleCarrito()">✖</span>
+<h2>Mi Pedido</h2>
 </div>
+<div id="lista"></div>
+<button class="enviar-btn" onclick="enviar()">Finalizar</button>
+</div>
+
+<div class="toast" id="toast">Producto agregado</div>
 
 <script src="datos.js"></script>
 
 <script>
-// Verificamos si los datos cargaron, si no, creamos un ejemplo para que no se rompa
-if (typeof productosData === 'undefined') {
-    window.productosData = [];
-    document.getElementById("grid-productos").innerHTML = "Error: No se encontró el archivo datos.js";
-}
-
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Función para iniciar la carga
-function cargarProductos() {
-    console.log("Datos locales detectados:", productosData.length);
-    renderizar('todos');
+function mostrarToast(){
+const t = document.getElementById("toast");
+t.classList.add("show");
+setTimeout(()=>t.classList.remove("show"),1500);
 }
 
-function renderizar(filtro = 'todos') {
-    const grid = document.getElementById("grid-productos");
-    if(!grid) return;
-    grid.innerHTML = "";
-
-    const filtrados = filtro === 'todos' ? productosData : productosData.filter(p => p.cat === filtro);
-
-    if(filtrados.length === 0) {
-        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>No hay productos en esta categoría.</p>";
-        return;
-    }
-
-    filtrados.forEach(p => {
-        grid.innerHTML += `
-            <div class="producto">
-                <div class="producto-top">
-                    <img src="${p.img}" onerror="this.src='https://placehold.co/200x200?text=ABREK+S.A.'">
-                    <h3>${p.nombre}</h3>
-                </div>
-                <div class="producto-bottom">
-                    <p class="precio">$${p.precio.toFixed(2)}</p>
-                    <div class="contador">
-                        <button onclick="cambiarCant('in-${p.id}', -1)">-</button>
-                        <input type="number" id="in-${p.id}" value="1" min="1">
-                        <button onclick="cambiarCant('in-${p.id}', 1)">+</button>
-                    </div>
-                    <button class="agregar" onclick="agregarAlCarrito('${p.id}')">Agregar</button>
-                </div>
-            </div>`;
-    });
+function animarCarrito(){
+const btn = document.getElementById("btnCarrito");
+btn.classList.add("animar");
+setTimeout(()=>btn.classList.remove("animar"),400);
 }
 
-// Eventos de Categorías
-document.querySelectorAll('.btn-categoria').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.btn-categoria').forEach(b => b.classList.remove('activo'));
-        this.classList.add('activo');
-        renderizar(this.dataset.cat);
-    });
+function agregarAlCarrito(id){
+const p = productosData.find(x=>x.id==id);
+let item = carrito.find(x=>x.id==id);
+
+if(item) item.cantidad++;
+else carrito.push({...p, cantidad:1});
+
+guardarYActualizar();
+
+/* 🔥 NUEVO */
+mostrarToast();
+animarCarrito();
+}
+
+function guardarYActualizar(){
+localStorage.setItem("carrito", JSON.stringify(carrito));
+actualizarCarritoUI();
+}
+
+function actualizarCarritoUI(){
+let c=0;
+carrito.forEach(p=>c+=p.cantidad);
+document.getElementById("contadorCarrito").innerText=c;
+}
+
+function toggleCarrito(){
+document.getElementById("panel").classList.toggle("activo");
+}
+
+function enviar(){
+let m="Hola, quisiera hacer un pedido:%0A";
+carrito.forEach(p=>{
+m+=`• ${p.cantidad} del ${p.nombre}%0A`;
 });
-
-function cambiarCant(id, c) {
-    let i = document.getElementById(id);
-    let v = parseInt(i.value) + c;
-    if(v >= 1) i.value = v;
+window.open("https://wa.me/593999617128?text="+m);
 }
 
-function agregarAlCarrito(id) {
-    // Buscamos comparando como String para evitar errores de tipo
-    const p = productosData.find(x => String(x.id) === String(id));
-    const input = document.getElementById(`in-${id}`);
-    const cant = parseInt(input.value);
-    
-    if(!p) return;
-
-    let item = carrito.find(x => String(x.id) === String(id));
-    if(item) item.cantidad += cant;
-    else carrito.push({...p, cantidad: cant});
-
-    input.value = 1;
-    guardarYActualizar();
-    
-    // Feedback visual opcional: abrir carrito
-    if(!document.getElementById("panel").classList.contains("activo")) {
-        toggleCarrito();
-    }
+function renderizar(){
+const grid=document.getElementById("grid-productos");
+productosData.forEach(p=>{
+grid.innerHTML+=`
+<div class="producto">
+<img src="${p.img}">
+<h3>${p.nombre}</h3>
+<p class="precio">$${p.precio}</p>
+<button class="agregar" onclick="agregarAlCarrito(${p.id})">Agregar</button>
+</div>`;
+});
 }
 
-function actualizarCarritoUI() {
-    const lista = document.getElementById("lista");
-    const btnW = document.getElementById("btn-whatsapp");
-    let t = 0, c = 0;
-    
-    lista.innerHTML = carrito.length === 0 ? "<p style='text-align:center; color:#999;'>El carrito está vacío</p>" : "";
-    btnW.disabled = carrito.length === 0;
-
-    carrito.forEach((p, i) => {
-        lista.innerHTML += `
-            <div class="item-carrito">
-                <div><strong>${p.nombre}</strong><br><small>$${(p.precio*p.cantidad).toFixed(2)}</small></div>
-                <div style="display:flex; align-items:center; gap:5px;">
-                    <button class="btn-cant-cart" onclick="modificarCarrito(${i}, -1)">-</button>
-                    <span>${p.cantidad}</span>
-                    <button class="btn-cant-cart" onclick="modificarCarrito(${i}, 1)">+</button>
-                    <button onclick="eliminar(${i})" style="border:none; color:red; cursor:pointer; margin-left:10px;">✖</button>
-                </div>
-            </div>`;
-        t += p.precio * p.cantidad;
-        c += p.cantidad;
-    });
-    document.getElementById("total").innerText = "Total: $" + t.toFixed(2);
-    document.getElementById("contadorCarrito").innerText = c;
-}
-
-function modificarCarrito(i, c) {
-    carrito[i].cantidad += c;
-    if(carrito[i].cantidad < 1) carrito.splice(i, 1);
-    guardarYActualizar();
-}
-
-function eliminar(i) { carrito.splice(i, 1); guardarYActualizar(); }
-function guardarYActualizar() { localStorage.setItem("carrito", JSON.stringify(carrito)); actualizarCarritoUI(); }
-function toggleCarrito() { document.getElementById("panel").classList.toggle("activo"); }
-
-function buscar() {
-    let v = document.getElementById("buscador").value.toLowerCase();
-    document.querySelectorAll('.producto').forEach(c => {
-        c.style.display = c.innerText.toLowerCase().includes(v) ? "" : "none";
-    });
-}
-
-function enviar() {
-    if(carrito.length === 0) return;
-    let m = "Hola ABREK S.A., quisiera los siguientes productos:%0A%0A";
-    carrito.forEach(p => {
-        m += `* ${p.cantidad} x ${p.nombre}%0A`;
-    });
-    m += `%0A*Total estimado: ${document.getElementById("total").innerText}*`;
-    window.open("https://wa.me/593999617128?text=" + m);
-}
-
-// Ejecución inicial
-cargarProductos();
+renderizar();
 actualizarCarritoUI();
 </script>
+
 </body>
 </html>
