@@ -159,6 +159,13 @@
     .precio{
         font-size: 18px;
     }
+        .carrito-btn{
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
 }
     </style>
 </head>
@@ -250,6 +257,7 @@ function renderizar(filtro = 'todos') {
                 </div>
                 <div class="producto-bottom">
                     <p class="precio">$${p.precio.toFixed(2)}</p>
+<small class="iva">Los precios incluyen IVA</small>
                     <div class="contador">
                         <button onclick="cambiarCant('in-${p.id}', -1)">-</button>
                         <input type="number" id="in-${p.id}" value="1" min="1">
