@@ -64,7 +64,9 @@ const productosData = [
 { id: 91, cat: 'perforacion', nombre: "Sacabocado/Bimetal 32mm", precio: 6.30, stock: 100, img: "img/img714.png" },
 { id: 92, cat: 'perforacion', nombre: "Porta/Sacabocado 14-30mm", precio: 3.78, stock: 100, img: "img/img714.png" },
 { id: 93, cat: 'perforacion', nombre: "Porta/Sacabocado 32-60mm", precio: 3.78, stock: 100, img: "img/img714.png" },
-
+{ id: 94, cat: 'perforacion', nombre: "Broca HSS 3/8\"", precio: 3.78, stock: 100, img: "img/img755.png" },
+{ id: 95, cat: 'perforacion', nombre: "Broca HSS 1/2\"", precio: 3.78, stock: 100, img: "img/img755.png" },
+    
     // SOLDADURA / OXICORTE / PLASMA (101-170)
     { id: 101, cat: 'soldadura', nombre: "Rollo de Alambre MIG 0.8-5Kg", precio: 12.00, stock: 500, img: "img/img626.png" },
     { id: 102, cat: 'soldadura', nombre: "Rollo de Alambre MIG 0.8-15Kg", precio: 26.00, stock: 20, img: "img/img626.png" },
@@ -123,6 +125,12 @@ const productosData = [
 { id: 155, cat: 'soldadura', nombre: "OXICORTE Boquilla GPN 4", precio: 6.50, stock: 20, img: "img/img904.png" },
 { id: 156, cat: 'soldadura', nombre: "OXICORTE Boquilla GPN 5", precio: 6.50, stock: 20, img: "img/img905.png" },
 { id: 157, cat: 'soldadura', nombre: "OXICORTE Antorcha", precio: 110.00, stock: 20, img: "img/img950.png" },
+{ id: 158, cat: 'soldadura', nombre: "PLASMA Capuchón de Retención PMX-45", precio: 110.00, stock: 20, img: "img/img862.png" },
+{ id: 159, cat: 'soldadura', nombre: "Anillo Difusor PMX-45", precio: 110.00, stock: 20, img: "img/img863.png" },
+{ id: 160, cat: 'soldadura', nombre: "PLASMA Antorcha 45XP (7.6 metros)", precio: 110.00, stock: 20, img: "img/img864.png" },
+{ id: 161, cat: 'soldadura', nombre: "PLASMA Escudo Protector/Deflector PMX-45", precio: 110.00, stock: 20, img: "img/img865.png" },
+{ id: 162, cat: 'soldadura', nombre: "PLASMA Boquillas 420118 PMX-30", precio: 110.00, stock: 20, img: "img/img866.png" },
+{ id: 163, cat: 'soldadura', nombre: "PLASMA Boquillas 420120 PMX-30", precio: 110.00, stock: 20, img: "img/img867.png" },
 
     // SEGURIDAD / EPP (171-200)
     { id: 171, cat: 'epp', nombre: "Guante Operador Sencillo", precio: 2.25, stock: 30, img: "img/img501.png" },
